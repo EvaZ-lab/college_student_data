@@ -323,7 +323,15 @@ cors_out = pd.DataFrame(cors, columns=["feature", "pearson_r", "n_used"])
 cors_out["abs_r"] = cors_out["pearson_r"].abs()
 cors_rank = cors_out.sort_values(by="abs_r", ascending=False)
 
-topk = st.slider("Show top-K (by |r|)", 5, min(50, len(cors_rank)), min(20, len(cors_rank)))
+max_k = int(min(50, len(cors_rank)))
+
+if max_k < 5:
+    st.info(f"Too few features to rank (only {max_k}). Showing all available correlations.")
+    topk = max_k
+else:
+    default_k = int(min(20, max_k))
+    topk = st.slider("Show top-K (by |r|)", min_value=5, max_value=max_k, value=default_k)
+
 show_df = cors_rank.head(topk)
 
 cA, cB = st.columns([1, 1])
