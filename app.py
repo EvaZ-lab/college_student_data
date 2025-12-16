@@ -179,7 +179,7 @@ with left:
     sel_categories = st.multiselect(
         "Categories",
         options=list(CATEGORY_MAP.keys()),
-        default=["A (behavior & sensing)"],
+        default=["A (Absolute Load)"],
     )
 
     selected_features = []
