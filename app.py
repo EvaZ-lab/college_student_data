@@ -215,11 +215,16 @@ with plot_col2:
     opacity = st.slider("Point opacity", 0.1, 1.0, 0.5, 0.05)
     show_marginals = st.checkbox("Show marginal distributions", value=False)
 
+
 scatter_cols = [x_feat, TARGET, "year", "week", "week_start_date"]
 if color_by != "(none)":
     scatter_cols.append(color_by)
 
-scatter_df = f[scatter_cols].copy()
+# ✅ de-duplicate while preserving order (fix narwhals DuplicateError)
+scatter_cols = list(dict.fromkeys(scatter_cols))
+
+scatter_df = f.loc[:, scatter_cols].copy()
+
 scatter_df[x_feat] = safe_numeric(scatter_df[x_feat])
 scatter_df[TARGET] = safe_numeric(scatter_df[TARGET])
 scatter_df = scatter_df.dropna(subset=[x_feat, TARGET])
