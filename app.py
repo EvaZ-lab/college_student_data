@@ -30,10 +30,10 @@ R_FEATURES = ["R1_sleep_midpoint_std", "R2_daily_steps_std", "R3_unlock_duration
 B_FEATURES = ["B1_recovery_time_balance", "B2_night_cognitive_load", "B3_daytime_fragmentation"]
 
 CATEGORY_MAP = {
-    "A (behavior & sensing)": A_FEATURES,
-    "S (survey / subjective)": S_FEATURES,
-    "R (regularity / rhythm)": R_FEATURES,
-    "B (derived / composite)": B_FEATURES,
+    "A (Absolute Load)": A_FEATURES,
+    "S (stress/survey)": S_FEATURES,
+    "R (Rhythm/Instability)": R_FEATURES,
+    "B (Balance/Fragmentation)": B_FEATURES,
 }
 
 ID_COLS_CANDIDATES = ["uid", "year", "week", "gender", "race"]
